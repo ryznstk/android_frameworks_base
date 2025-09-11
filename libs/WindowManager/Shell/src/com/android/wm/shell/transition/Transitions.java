@@ -516,10 +516,10 @@ public class Transitions implements RemoteCallable<Transitions>,
     }
 
     /** Boosts the process priority of remote animation player. */
-    public static void setRunningRemoteTransitionDelegate(IApplicationThread appThread) {
-        if (appThread == null) return;
+    public static void setRunningRemoteTransitionDelegate(IBinder transitionToken) {
+        if (transitionToken == null) return;
         try {
-            ActivityTaskManager.getService().setRunningRemoteTransitionDelegate(appThread);
+            ActivityTaskManager.getService().setRunningRemoteTransitionDelegate(transitionToken);
         } catch (SecurityException e) {
             Log.e(TAG, "Unable to boost animation process. This should only happen"
                     + " during unit tests");
